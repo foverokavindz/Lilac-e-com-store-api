@@ -26,6 +26,7 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
+// delete user
 const deleteUser = asyncHandler(async (req, res) => {
   const deletedUser = await User.findByIdAndDelete(req.params.id);
   if (!deletedUser) {
