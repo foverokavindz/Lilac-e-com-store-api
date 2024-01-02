@@ -1,13 +1,49 @@
-const asyncHandler = require('express-async-handler');
-const Cart = require('../models/cart');
+const express = require('express');
+const router = express.Router();
+const { protect, admin } = require('../middleware/authentication.js');
+const {
+  showCart,
+  createCart,
+  addproduct,
+  removeProduct,
+  changeQty,
+  clearCart,
+} = require('../controllers/cartController.js');
 
-const showCart = asyncHandler(async (req, res) => {
+router
+  .route('/')
+  .get(protect, showCart)
+  .post(
+    protect,
+    createCart /*NOTE : Meka auto hadenna one User item add krnw withri */
+  );
+router.route('/addnew/:id').post(protect, addproduct);
+
+router.route('/removeitem/:itemId/:userId').delete(protect, removeProduct);
+router.route('/removeitem/:itemId/:userId').put(protect, changeQty);
+router.route('/remove/:userId').delete(protect, clearCart);
+
+module.exports = router;
+
+//old code
+
+/*
+
+
+
+const Cart = require('../models/cart');
+const mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
+
+// Show Cart (display all)
+router.get('/', async (req, res) => {
   const myCart = await Cart.find().sort('name');
   res.send(myCart);
 });
 
-//NOTE : Meka auto hadenna one User item add krnw withri
-const createCart = asyncHandler(async (req, res) => {
+// create Cart
+router.post('/create', async (req, res) => {
   const { userId, product } = req.body;
 
   const myCart = await new Cart({
@@ -31,7 +67,8 @@ const createCart = asyncHandler(async (req, res) => {
   res.send(myCart);
 });
 
-const addproduct = asyncHandler(async (req, res) => {
+// add Item to cart
+router.post('/addnew/:id', async (req, res) => {
   const { product } = req.body;
 
   const cart = await Cart.findOne({ user: req.params.id }); // find the cart with the user and product the user
@@ -46,7 +83,8 @@ const addproduct = asyncHandler(async (req, res) => {
   res.send(cart);
 });
 
-const removeProduct = asyncHandler(async (req, res) => {
+// remove Item
+router.delete('/removeitem/:itemId/:userId', async (req, res) => {
   const cart = await Cart.findOne({ user: req.params.userId });
 
   if (cart) {
@@ -70,7 +108,8 @@ const removeProduct = asyncHandler(async (req, res) => {
   }
 });
 
-const changeQty = asyncHandler(async (req, res) => {
+// Change Quantity
+router.put('/changeqty/:itemId/:userId', async (req, res) => {
   const cart = await Cart.findOne({ user: req.params.userId });
 
   if (cart) {
@@ -95,21 +134,24 @@ const changeQty = asyncHandler(async (req, res) => {
   }
 });
 
-const clearCart = asyncHandler(async (req, res) => {
-  const cart = await Cart.findById(req.params.userId);
-  if (!cart) {
-    res.status(404).json({ message: 'Cart not found' });
-  } else {
-    await cart.remove();
-    res.status(200).json({ message: 'Cart removed' });
+// clear cart (after order success) or (User req)
+router.delete('/remove/:userId', async (req, res) => {
+  try {
+    const cart = await Cart.findById(req.params.userId);
+    if (!cart) {
+      res.status(404).json({ message: 'Cart not found' });
+    } else {
+      await cart.remove();
+      res.status(200).json({ message: 'Cart removed' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
-module.exports = {
-  showCart,
-  createCart,
-  addproduct,
-  removeProduct,
-  changeQty,
-  clearCart,
-};
+module.exports = router;
+
+
+
+*/

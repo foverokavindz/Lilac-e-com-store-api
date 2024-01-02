@@ -11,7 +11,7 @@ const addnewCategory = asyncHandler(async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  let category = await new Category({
+  let category = new Category({
     name: req.body.name,
     description: req.body.description,
     //product: req.body.products,
