@@ -35,4 +35,48 @@ const deleteUser = asyncHandler(async (req, res) => {
   return res.status(204).json({ message: 'User deleted successfully' });
 });
 
-module.exports = { updateUser, deleteUser };
+// Get user Profile
+const getUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id).select('-password');
+  res.send(user);
+});
+
+// Get all Users
+const getAllUsers = asyncHandler(async (req, res) => {
+  const users = await User.find().sort('name');
+  res.send(users);
+});
+
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select('-password');
+
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+// Chnage user system role - Customer - Admin - Operator
+//NOTE
+const updateUserRole = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    user.role = req.body.role;
+    const updatedUser = await user.save();
+    res.status(200).json(updatedUser.role);
+  } else {
+    res.status(404).json({ success: false, message: 'User is not Updated' });
+  }
+});
+
+module.exports = {
+  updateUser,
+  deleteUser,
+  getUserProfile,
+  getAllUsers,
+  getUserById,
+  updateUserRole,
+};

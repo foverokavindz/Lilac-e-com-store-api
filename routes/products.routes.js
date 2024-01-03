@@ -9,16 +9,18 @@ const {
   addReview,
   updateProduct,
   getProductByName,
+  getFeaturedProducts,
 } = require('../controllers/productController.js');
 
 router.route('/').get(displayAllproducts).post(protect, admin, addNewProduct);
-router.route('/:id/reviews').post(protect, addReview);
+router.route('/reviews/:id').post(protect, addReview);
 router.get('/search/:name', getProductByName);
 router
   .route('/:id')
   .get(getProductById)
   .delete(protect, admin, deleteProduct)
   .put(protect, admin, updateProduct);
+router.route('/featured').get(getFeaturedProducts);
 
 module.exports = router;
 

@@ -122,4 +122,4 @@ const googleAuth = asyncHandler(async (req, res) => {
 const signOut = asyncHandler(async (req, res) => {
   res.clearCookie('access_token').status(200).json('Signout success!');
 });
-module.exports = { signUp, signIn, googleAuth };
+module.exports = { signUp, signIn, googleAuth, signOut };
