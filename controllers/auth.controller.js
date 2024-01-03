@@ -119,6 +119,7 @@ const googleAuth = asyncHandler(async (req, res) => {
   }
 });
 
+// not functional this route
 const signOut = asyncHandler(async (req, res) => {
   res.clearCookie('access_token').status(200).json('Signout success!');
 });

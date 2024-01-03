@@ -44,18 +44,11 @@ const getOrdersAll = asyncHandler(async (req, res) => {
   res.json(orders);
 });
 
-const updateOrderToPaid = asyncHandler(async (req, res) => {
+const chnageOrderStatus = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
 
   if (order) {
-    order.isPaid = true;
-    order.paidAt = Date.now();
-    // order.paymentResult = {
-    //   id: req.body.id,
-    //   status: req.body.status,
-    //   update_time: req.body.update_time,
-    //   email_address: req.body.payer.email_address,
-    // };
+    order.status = req.body.status;
 
     const updatedOrder = await order.save();
 
@@ -66,27 +59,28 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   }
 });
 
-const updateOrderToDelivered = asyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id);
+// not functional
+// const updateOrderToDelivered = asyncHandler(async (req, res) => {
+//   const order = await Order.findById(req.params.id);
 
-  if (order) {
-    order.isDelivered = true;
-    order.deliveredAt = Date.now();
+//   if (order) {
+//     order.isDelivered = true;
+//     order.deliveredAt = Date.now();
 
-    const updatedOrder = await order.save();
+//     const updatedOrder = await order.save();
 
-    res.json(updatedOrder);
-  } else {
-    res.status(404);
-    throw new Error('Order not found');
-  }
-});
+//     res.json(updatedOrder);
+//   } else {
+//     res.status(404);
+//     throw new Error('Order not found');
+//   }
+// });
 
 module.exports = {
   addOrderPoducts,
   getOrderById,
   getMyOrders,
   getOrdersAll,
-  updateOrderToPaid,
-  updateOrderToDelivered,
+  chnageOrderStatus,
+  //updateOrderToDelivered,
 };
