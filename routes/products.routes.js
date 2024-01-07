@@ -12,7 +12,7 @@ const {
   getFeaturedProducts,
 } = require('../controllers/product.controller.js');
 
-router.route('/').get(displayAllproducts).post(protect, admin, addNewProduct);
+router.route('/').get(displayAllproducts).post(protect, addNewProduct);
 router.route('/reviews/:id').post(protect, addReview);
 router.get('/search/:name', getProductByName);
 router

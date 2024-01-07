@@ -1,10 +1,11 @@
 {
   "name": "Casual T-Shirt",
   "description": "A comfortable and stylish T-shirt for everyday wear.",
-  "image": "https://example.com/casual-tshirt.jpg",
+  "image": "https://www.freepik.com/free-photo/hanging-pullover_1365340.htm#query=cloths&position=4&from_view=search&track=sph&uuid=db0a8237-99d2-4659-86dc-3c64afb7acb9",
+  "images" :["https://www.freepik.com/free-photo/graphic-tshirt-trendy-design-mockup-presented-wooden-hanger-with-sapce-your-test_29211409.htm#query=cloths&position=13&from_view=search&track=sph&uuid=db0a8237-99d2-4659-86dc-3c64afb7acb9","https://www.freepik.com/free-photo/graphic-shirt-trendy-design-mockup_26238439.htm#query=cloths&position=28&from_view=search&track=sph&uuid=db0a8237-99d2-4659-86dc-3c64afb7acb9","https://www.freepik.com/free-vector/minimalist-small-business-big-dreams-t-shirt_75649441.htm#query=cloths&position=34&from_view=search&track=sph&uuid=db0a8237-99d2-4659-86dc-3c64afb7acb9"],
   "brand": "ABC Clothing",
   "price": 19.99,
-  "category": "6150c3b7da9a88112522bb6a", // Replace with an actual Category ObjectId
+  "category": ["659a681e38691edbb8ebb063","659a671b38691edbb8ebb061","659a684338691edbb8ebb069"], // Replace with an actual Category ObjectId
   "stock": [
     {
       "color": "Blue",
@@ -23,18 +24,9 @@
       ]
     }
   ],
-  "isFeatured": true,
-  "review": [
-    {
-      "name": "John Doe",
-      "rating": 4.5,
-      "comment": "Great quality T-shirt!",
-      "user": "6150c3b7da9a88112522bb6b" // Replace with an actual User ObjectId
-    }
-  ],
-  "numReviews": 1
+  "isFeatured": true
+ 
 }
-
 
 {
   "name": "Slim Fit Jeans",

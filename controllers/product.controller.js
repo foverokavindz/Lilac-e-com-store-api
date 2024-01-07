@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 const { Product, validate } = require('../models/product');
 const { Category } = require('../models/category');
 
+// tested -working
 const displayAllproducts = asyncHandler(async (req, res) => {
   const products = await Product.find().sort('name');
   res.send(products);
@@ -28,9 +29,10 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 });
 
+// tested -working
 const addNewProduct = asyncHandler(async (req, res) => {
-  const { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  //const { error } = validate(req.body);
+  //if (error) return res.status(400).send(error.details[0].message);
 
   const {
     name,
@@ -55,36 +57,41 @@ const addNewProduct = asyncHandler(async (req, res) => {
     image,
   });
 
-  product.stock.push(
-    stock.map((item) => {
-      return {
-        color: item.color,
-        sizeCount: item.map((items) => {
-          return { size: items.size, count: items.count };
-        }),
-      };
-    })
-  );
+  product.stock.push(...stock);
   product.images.push(...images);
   product.category.push(...category);
 
   // Save the product to the database
-  await product.save();
+  const savedProduct = await product.save();
 
+  // after saving product save its id on category table for faster access
+  category.map(async (id) => {
+    await Category.updateOne(
+      { _id: id },
+      { $push: { product: savedProduct._id } },
+      (err, result) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log('Category updated successfully:', result);
+        }
+      }
+    );
+  });
   // Update the category with the new product ID
   // use await before Promise.all() to make sure that all updates are completed before sending the response.
-  await Promise.all(
-    category.map(async (categoryObj) => {
-      const categoryId = categoryObj._id;
-      await Category.updateOne(
-        { _id: categoryId },
-        { $push: { product: product._id } }
-      );
-    })
-  );
+  // await Promise.all(
+  //   category.map(async (categoryObj) => {
+  //     const categoryId = categoryObj._id;
+  //     await Category.updateOne(
+  //       { _id: categoryId },
+  //       { $push: { product: product._id } }
+  //     );
+  //   })
+  // );
 
   // Return the product as response
-  res.send(product);
+  res.send(savedProduct);
 });
 
 const addReview = asyncHandler(async (req, res) => {

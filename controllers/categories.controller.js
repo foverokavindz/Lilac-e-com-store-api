@@ -26,8 +26,8 @@ const addnewCategory = asyncHandler(async (req, res) => {
 
 // tested -working
 const filterByCategory = asyncHandler(async (req, res) => {
-  const categoryName = await Category.find({ name: req.params.namae });
-
+  const categoryName = await Category.findOne({ name: req.params.name });
+  console.log('categoryName  ', categoryName);
   if (categoryName) {
     const products = await Product.find({
       category: categoryName._id,
@@ -39,7 +39,7 @@ const filterByCategory = asyncHandler(async (req, res) => {
   }
 });
 
-//tested -working
+//tested -working ---- no need
 const getProductByName = asyncHandler(async (req, res) => {
   const category = await Category.findOne({ name: req.params.name }).populate(
     'product'
