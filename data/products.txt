@@ -31,10 +31,24 @@
 {
   "name": "Slim Fit Jeans",
   "description": "Classic slim fit jeans for a modern look.",
-  "image": "https://example.com/slim-fit-jeans.jpg",
+  "image": "https://www.freepik.com/free-psd/blue-jeans-isolated-transparent-background_91062942.htm#query=jeans&position=6&from_view=search&track=sph&uuid=3e79734b-df9d-4f00-aac1-12abb3865309",
+  ,
+
+  "images" : [
+
+      "https://www.freepik.com/free-photo/jeans_1135313.htm#query=jeans&position=13&from_view=search&track=sph&uuid=3e79734b-df9d-4f00-aac1-12abb3865309",
+      "https://www.freepik.com/free-psd/ripped-jean-shorts-with-tag-mockup_3574432.htm#query=jeans&position=17&from_view=search&track=sph&uuid=3e79734b-df9d-4f00-aac1-12abb3865309".
+      "https://www.freepik.com/free-vector/jeans-apparel-texture_833742.htm#query=jeans&position=19&from_view=search&track=sph&uuid=3e79734b-df9d-4f00-aac1-12abb3865309",
+      "https://www.freepik.com/free-psd/blue-jeans-isolated-transparent-background_91062610.htm#query=jeans&position=32&from_view=search&track=sph&uuid=3e79734b-df9d-4f00-aac1-12abb3865309"
+
+
+
+  ],
+  
+  
   "brand": "XYZ Denim",
   "price": 34.99,
-  "category": "6150c3b7da9a88112522bb6a", // Replace with an actual Category ObjectId
+  "category": ["659a685e38691edbb8ebb06d","659a684e38691edbb8ebb06b","659a681e38691edbb8ebb063"], 
   "stock": [
     {
       "color": "Black",
@@ -45,7 +59,7 @@
       ]
     },
     {
-      "color": "Blue",
+      "color": "Dark Purple",
       "sizeCount": [
         { "size": "28", "count": 20 },
         { "size": "30", "count": 35 },
@@ -53,9 +67,8 @@
       ]
     }
   ],
-  "isFeatured": false,
-  "review": [],
-  "numReviews": 0
+  "isFeatured": true,
+ 
 }
 
 {

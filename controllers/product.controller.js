@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const { Product, validate } = require('../models/product');
 const { Category } = require('../models/category');
+const { User } = require('../models/user.model');
 
 // tested -working
 const displayAllproducts = asyncHandler(async (req, res) => {
@@ -8,6 +9,7 @@ const displayAllproducts = asyncHandler(async (req, res) => {
   res.send(products);
 });
 
+// tested -working
 const getProductById = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
@@ -18,6 +20,7 @@ const getProductById = asyncHandler(async (req, res) => {
   }
 });
 
+// not tested
 const deleteProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
@@ -94,6 +97,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
   res.send(savedProduct);
 });
 
+// tested - working
 const addReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body;
 
@@ -103,22 +107,25 @@ const addReview = asyncHandler(async (req, res) => {
 
   if (product) {
     const alreadyReviewed = product.review.find(
-      (r) => r.user.toString() === req.body._id.toString()
+      (item) => item.user.toString() === req.user._id.toString()
     );
 
+    console.log('alreadyReviewed   ', alreadyReviewed);
     if (alreadyReviewed)
       return res.status(400).send('Product already reviewed');
 
+    const { firstName, lastName } = await User.findOne({ _id: req.user._id });
+
     const review = {
-      name: req.body.name,
+      name: firstName + ' ' + lastName,
       rating: Number(rating),
       comment,
-      user: req.body._id,
+      user: req.user._id,
     };
 
     product.review.push(review);
 
-    product.numReviews = product.review.length;
+    product.numReviews = product.review.length + 1;
 
     await product.save();
 
@@ -220,6 +227,7 @@ const updateProduct = asyncHandler(async (req, res) => {
   }
 });
 
+// tested - working
 const getProductByName = asyncHandler(async (req, res) => {
   const name = req.params.name;
   const products = await Product.find({
@@ -233,10 +241,16 @@ const getProductByName = asyncHandler(async (req, res) => {
   res.send(products);
 });
 
+//tested - working
 const getFeaturedProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({ isFeatured: true });
 
-  if (products) res.send(products);
+  //console.log('products    ', products);
+  if (products.length > 0) {
+    res.send(products);
+  } else {
+    res.status(404).send({ message: 'No featured products found.' });
+  }
 });
 
 // Update Category // TODO - Not needed for now

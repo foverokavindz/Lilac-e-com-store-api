@@ -13,13 +13,13 @@ const {
 } = require('../controllers/product.controller.js');
 
 router.route('/').get(displayAllproducts).post(protect, addNewProduct);
-router.route('/reviews/:id').post(protect, addReview);
+router.route('/review/:id').put(protect, addReview);
 router.get('/search/:name', getProductByName);
+router.route('/featured').get(getFeaturedProducts);
 router
   .route('/:id')
   .get(getProductById)
   .delete(protect, admin, deleteProduct)
   .put(protect, admin, updateProduct);
-router.route('/featured').get(getFeaturedProducts);
 
 module.exports = router;
