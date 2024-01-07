@@ -7,12 +7,16 @@ const {
   filterByCategory,
   getProductByName,
 } = require('../controllers/categories.controller.js');
-
+/*
 router
   .route('/')
   .post(protect, addnewCategory)
   .get(protect, admin, getAllCategories);
+
+  */
+
+router.route('/').post(protect, addnewCategory).get(protect, getAllCategories);
 router.get('/name/:name', getProductByName);
-router.get('/filter//:categoryName', filterByCategory);
+router.get('/filter/:name', filterByCategory);
 
 module.exports = router;
