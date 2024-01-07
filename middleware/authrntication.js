@@ -14,6 +14,7 @@ const protect = function (req, res, next) {
   try {
     const decoded = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
     req.user = decoded; // == req.user._id // methanin gnne payload eka
+    console.log('req.user    ', req.user);
     next();
   } catch (ex) {
     res.status(400).send('invalid token');
@@ -38,4 +39,4 @@ const admin = function (req, res, next) {
   }
 };
 
-module.exports = { protect };
+module.exports = { protect, admin };

@@ -1,9 +1,10 @@
 const asyncHandler = require('express-async-handler');
 const { User } = require('../models/user.model');
 
-// Login the user
+// update user - tested - working
 const updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
+  const user = await User.findById(req.user._id);
+  console.log('user  ', user);
 
   const { firstName, lastName, city, phone, address, profilePicture } =
     req.body;
@@ -26,7 +27,7 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
-// delete user
+// delete user - tested - working
 const deleteUser = asyncHandler(async (req, res) => {
   const deletedUser = await User.findByIdAndDelete(req.params.id);
   if (!deletedUser) {
@@ -35,18 +36,22 @@ const deleteUser = asyncHandler(async (req, res) => {
   return res.status(204).json({ message: 'User deleted successfully' });
 });
 
-// Get user Profile
+// Get user Profile - tested - working
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id).select('-password');
   res.send(user);
+
+  if (!user)
+    res.status(404).json({ success: false, message: 'User is not found' });
 });
 
-// Get all Users
+// Get all Users - tested - working
 const getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find().sort('name');
   res.send(users);
 });
 
+// get user's profileusing id used in admin dasboard - tested - working
 const getUserById = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id).select('-password');
 
@@ -58,7 +63,7 @@ const getUserById = asyncHandler(async (req, res) => {
   }
 });
 
-// Chnage user system role - Customer - Admin - Operator
+// Chnage user system role - Customer - Admin - Operator - tested - working
 //NOTE
 const updateUserRole = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);

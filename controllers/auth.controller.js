@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+// user sign up to application - tested - working
 const signUp = asyncHandler(async (req, res) => {
   const { error } = validateUser(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -39,6 +40,7 @@ const signUp = asyncHandler(async (req, res) => {
   //res.header('x-auth-token', token).send({ ...user._doc });
 });
 
+// sign in user to application - tested - working
 const signIn = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -71,6 +73,7 @@ const signIn = asyncHandler(async (req, res) => {
   //   .json(rest);
 });
 
+// sign in user using google authentication - tested - working
 const googleAuth = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (user) {
