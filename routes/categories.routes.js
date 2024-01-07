@@ -6,11 +6,11 @@ const {
   addnewCategory,
   filterByCategory,
   getProductByName,
-} = require('../controllers/categoriesController.js');
+} = require('../controllers/categories.controller.js');
 
 router
   .route('/')
-  .post(protect, admin, addnewCategory)
+  .post(protect, addnewCategory)
   .get(protect, admin, getAllCategories);
 router.get('/name/:name', getProductByName);
 router.get('/filter//:categoryName', filterByCategory);

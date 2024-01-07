@@ -1,0 +1,146 @@
+{
+  "name": "Casual T-Shirt",
+  "description": "A comfortable and stylish T-shirt for everyday wear.",
+  "image": "https://example.com/casual-tshirt.jpg",
+  "brand": "ABC Clothing",
+  "price": 19.99,
+  "category": "6150c3b7da9a88112522bb6a", // Replace with an actual Category ObjectId
+  "stock": [
+    {
+      "color": "Blue",
+      "sizeCount": [
+        { "size": "S", "count": 50 },
+        { "size": "M", "count": 30 },
+        { "size": "L", "count": 20 }
+      ]
+    },
+    {
+      "color": "Red",
+      "sizeCount": [
+        { "size": "S", "count": 40 },
+        { "size": "M", "count": 25 },
+        { "size": "L", "count": 15 }
+      ]
+    }
+  ],
+  "isFeatured": true,
+  "review": [
+    {
+      "name": "John Doe",
+      "rating": 4.5,
+      "comment": "Great quality T-shirt!",
+      "user": "6150c3b7da9a88112522bb6b" // Replace with an actual User ObjectId
+    }
+  ],
+  "numReviews": 1
+}
+
+
+{
+  "name": "Slim Fit Jeans",
+  "description": "Classic slim fit jeans for a modern look.",
+  "image": "https://example.com/slim-fit-jeans.jpg",
+  "brand": "XYZ Denim",
+  "price": 34.99,
+  "category": "6150c3b7da9a88112522bb6a", // Replace with an actual Category ObjectId
+  "stock": [
+    {
+      "color": "Black",
+      "sizeCount": [
+        { "size": "28", "count": 25 },
+        { "size": "30", "count": 30 },
+        { "size": "32", "count": 20 }
+      ]
+    },
+    {
+      "color": "Blue",
+      "sizeCount": [
+        { "size": "28", "count": 20 },
+        { "size": "30", "count": 35 },
+        { "size": "32", "count": 15 }
+      ]
+    }
+  ],
+  "isFeatured": false,
+  "review": [],
+  "numReviews": 0
+}
+
+{
+  "name": "Running Shoes",
+  "description": "High-performance running shoes for athletes.",
+  "image": "https://example.com/running-shoes.jpg",
+  "brand": "SportsGear",
+  "price": 79.99,
+  "category": "6150c3b7da9a88112522bb6b", // Replace with an actual Category ObjectId
+  "stock": [
+    {
+      "color": "Black",
+      "sizeCount": [
+        { "size": "US 7", "count": 15 },
+        { "size": "US 9", "count": 20 },
+        { "size": "US 11", "count": 25 }
+      ]
+    },
+    {
+      "color": "White",
+      "sizeCount": [
+        { "size": "US 7", "count": 20 },
+        { "size": "US 9", "count": 15 },
+        { "size": "US 11", "count": 30 }
+      ]
+    }
+  ],
+  "isFeatured": true,
+  "review": [
+    {
+      "name": "Alice Smith",
+      "rating": 4.0,
+      "comment": "Excellent shoes for running!",
+      "user": "6150c3b7da9a88112522bb6c" // Replace with an actual User ObjectId
+    },
+    {
+      "name": "Bob Johnson",
+      "rating": 4.5,
+      "comment": "Comfortable and stylish!",
+      "user": "6150c3b7da9a88112522bb6d" // Replace with an actual User ObjectId
+    }
+  ],
+  "numReviews": 2
+}
+
+
+{
+  "name": "Formal Shirt",
+  "description": "Elegant formal shirt for special occasions.",
+  "image": "https://example.com/formal-shirt.jpg",
+  "brand": "ClassicWear",
+  "price": 49.99,
+  "category": "6150c3b7da9a88112522bb6a", // Replace with an actual Category ObjectId
+  "stock": [
+    {
+      "color": "White",
+      "sizeCount": [
+        { "size": "15", "count": 30 },
+        { "size": "16", "count": 25 },
+        { "size": "17", "count": 20 }
+      ]
+    },
+    {
+      "color": "Blue",
+      "sizeCount": [
+        { "size": "15", "count": 25 },
+        { "size": "16", "count": 30 },
+        { "size": "17", "count": 15 }
+      ]
+    }
+  ],
+  "isFeatured": false,
+  "review": [],
+  "numReviews": 0
+
+}
+
+
+
+

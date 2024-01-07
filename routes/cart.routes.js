@@ -8,7 +8,7 @@ const {
   removeProduct,
   changeQty,
   clearCart,
-} = require('../controllers/cartController.js');
+} = require('../controllers/cart.controller.js');
 
 router
   .route('/')

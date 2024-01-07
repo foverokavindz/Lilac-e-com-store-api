@@ -8,7 +8,7 @@ const {
   getOrdersAll,
   chnageOrderStatus,
   //updateOrderToDelivered,
-} = require('../controllers/ordersController.js');
+} = require('../controllers/orders.controller.js');
 
 router
   .route('/')

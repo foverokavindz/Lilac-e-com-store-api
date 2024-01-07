@@ -10,7 +10,7 @@ const {
   updateProduct,
   getProductByName,
   getFeaturedProducts,
-} = require('../controllers/productController.js');
+} = require('../controllers/product.controller.js');
 
 router.route('/').get(displayAllproducts).post(protect, admin, addNewProduct);
 router.route('/reviews/:id').post(protect, addReview);
