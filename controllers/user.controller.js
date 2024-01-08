@@ -3,8 +3,8 @@ const { User } = require('../models/user.model');
 
 // update user - tested - working
 const updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
-  console.log('user  ', user);
+  const user = await User.findById(req.user.id);
+  //console.log('user  ', req.user);
 
   const { firstName, lastName, city, phone, address, profilePicture } =
     req.body;

@@ -68,18 +68,27 @@ const addNewProduct = asyncHandler(async (req, res) => {
   const savedProduct = await product.save();
 
   // after saving product save its id on category table for faster access
+  // mongoose does not accepted callback in this version i have o change it to then.catch
   category.map(async (id) => {
     await Category.updateOne(
       { _id: id },
-      { $push: { product: savedProduct._id } },
+      {
+        $push: { product: savedProduct._id } /*,
       (err, result) => {
         if (err) {
           console.error(err);
         } else {
           console.log('Category updated successfully:', result);
-        }
+        }*/,
       }
-    );
+    )
+      .then((res) => {
+        console.log('Category updated successfully:', res);
+      })
+      .catch((err) => {
+        //catch error
+        console.error(err);
+      });
   });
   // Update the category with the new product ID
   // use await before Promise.all() to make sure that all updates are completed before sending the response.
