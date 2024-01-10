@@ -9,6 +9,7 @@ const signUp = asyncHandler(async (req, res) => {
   const { error } = validateUser(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
+  console.log('req.body  ', req.body);
   let user = await User.findOne({ email: req.body.email });
   if (user) return res.status(400).send('Email already exists');
 
