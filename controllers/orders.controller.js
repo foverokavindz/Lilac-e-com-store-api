@@ -24,6 +24,7 @@ const addOrderPoducts = asyncHandler(async (req, res) => {
   }
 });
 
+// admin or user
 const getOrderById = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
 
@@ -35,16 +36,19 @@ const getOrderById = asyncHandler(async (req, res) => {
   }
 });
 
+//user
 const getMyOrders = asyncHandler(async (req, res) => {
   const orders = await Order.find({ user: req.params.id });
   res.json(orders);
 });
 
+//admin
 const getOrdersAll = asyncHandler(async (req, res) => {
   const orders = await Order.find({}).populate('user', 'id name');
   res.json(orders);
 });
 
+//admin
 const chnageOrderStatus = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
 

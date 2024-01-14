@@ -12,6 +12,8 @@ const orderSchema = mongoose.Schema(
         name: { type: String, required: true },
         quantity: { type: String, required: true },
         image: { type: String, required: true },
+        color: { type: String, required: true },
+        size: { type, String, required: true },
         price: { type: String, required: true },
         productId: {
           type: mongoose.Schema.Types.ObjectId,
@@ -36,6 +38,7 @@ const orderSchema = mongoose.Schema(
       type: String,
       required: true,
       enum: ['cod', 'card'],
+      default: 'cod',
     },
     dateOrdered: {
       type: Date,
