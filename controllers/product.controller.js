@@ -5,7 +5,9 @@ const { User } = require('../models/user.model');
 
 // tested -working
 const displayAllproducts = asyncHandler(async (req, res) => {
-  const products = await Product.find().sort('name');
+  const products = await Product.find()
+    .sort('name')
+    .populate('category', 'name');
   res.send(products);
 });
 
