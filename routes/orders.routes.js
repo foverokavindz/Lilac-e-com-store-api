@@ -10,10 +10,7 @@ const {
   //updateOrderToDelivered,
 } = require('../controllers/orders.controller.js');
 
-router
-  .route('/')
-  .post(protect, addOrderPoducts)
-  .get(protect, admin, getOrdersAll);
+router.route('/').post(protect, addOrderPoducts).get(protect, getOrdersAll);
 router.route('/myorders').get(protect, getMyOrders);
 router.route('/:id').get(protect, getOrderById);
 router.route('/:id/pay').put(protect, chnageOrderStatus);

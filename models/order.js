@@ -93,4 +93,6 @@ orderSchema.methods.updateAllTotal = function () {
 
 const Order = mongoose.model('Order', orderSchema);
 
-exports.Order = Order;
+module.exports = {
+  Order: Order,
+};

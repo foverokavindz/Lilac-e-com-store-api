@@ -1,15 +1,16 @@
 const asyncHandler = require('express-async-handler');
-const Order = require('../models/order');
+const { Order } = require('../models/order');
 
 const addOrderPoducts = asyncHandler(async (req, res) => {
-  const { userId } = req.user._id;
-  const { orderItems, address, total } = req.body;
+  const userId = req.user.id;
+  const { orderItems, address } = req.body;
 
+  console.log('userId  ', userId);
   if (!orderItems) {
     res.status(400);
     throw new Error('No order items');
   } else {
-    const order = await new Order({
+    const order = await Order.create({
       user: userId,
       address: address,
     });
@@ -44,7 +45,7 @@ const getMyOrders = asyncHandler(async (req, res) => {
 
 //admin
 const getOrdersAll = asyncHandler(async (req, res) => {
-  const orders = await Order.find({}).populate('user', 'id name');
+  const orders = await Order.find().populate('user', 'id name');
   res.json(orders);
 });
 
