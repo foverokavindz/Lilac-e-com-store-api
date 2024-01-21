@@ -45,7 +45,10 @@ const getMyOrders = asyncHandler(async (req, res) => {
 
 //admin
 const getOrdersAll = asyncHandler(async (req, res) => {
-  const orders = await Order.find().populate('user', 'id firstName lastName');
+  const orders = await Order.find().populate(
+    'user',
+    'id firstName lastName profilePicture city email'
+  );
   res.json(orders);
 });
 
