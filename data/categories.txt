@@ -3,47 +3,47 @@
   "description": "Casual and comfortable T-shirts for everyday wear.",
 }
 
-
+,
 {
   "name": "Jeans",
   "description": "Various styles of jeans for a trendy look.",
 }
-
+,
 
 {
   "name": "Running Shoes",
   "description": "High-performance running shoes for sports enthusiasts.",
 }
 
-
+,
 {
   "name": "Formal Wear",
   "description": "Elegant and sophisticated formal wear for special occasions.",
 }
-
+,
 
 {
   "name": "Jackets",
   "description": "Stylish jackets to keep you warm in cold weather.",
 }
-
+,
 
 {
   "name": "Men",
   "description": "Cloths for men",
 }
-
+,
 
 {
   "name": "Women",
   "description": "Cloths for women"
 }
-
+,
 {
   "name": "Kids",
   "description": "Cloths for Kids"
 }
-
+,
 {
   "name": "Unisex",
   "description": "Unisex cloths"
