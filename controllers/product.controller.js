@@ -264,6 +264,16 @@ const getFeaturedProducts = asyncHandler(async (req, res) => {
   }
 });
 
+const getProductCount = asyncHandler(async (req, res) => {
+  try {
+    const count = await Product.countDocuments();
+    res.json(count);
+  } catch (error) {
+    console.error('Error retrieving product count:', error);
+    throw error;
+  }
+});
+
 // Update Category // TODO - Not needed for now
 // get all products by category name //TODO  - DONE
 module.exports = {
@@ -275,4 +285,5 @@ module.exports = {
   updateProduct,
   getProductByName,
   getFeaturedProducts,
+  getProductCount,
 };

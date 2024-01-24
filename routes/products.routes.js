@@ -10,9 +10,11 @@ const {
   updateProduct,
   getProductByName,
   getFeaturedProducts,
+  getProductCount,
 } = require('../controllers/product.controller.js');
 
 router.route('/').get(displayAllproducts).post(protect, addNewProduct);
+router.route('/count').get(getProductCount);
 router.route('/review/:id').put(protect, addReview);
 router.get('/search/:name', getProductByName);
 router.route('/featured').get(getFeaturedProducts);

@@ -68,6 +68,35 @@ const chnageOrderStatus = asyncHandler(async (req, res) => {
   }
 });
 
+const getOrderCount = asyncHandler(async (req, res) => {
+  try {
+    const orderCount = await Order.countDocuments();
+    res.json(orderCount);
+  } catch (error) {
+    console.error('Error retrieving order count:', error);
+    throw error;
+  }
+});
+
+const getPendingOrdersTotal = asyncHandler(async (req, res) => {
+  try {
+    const pipeline = [
+      { $match: { status: 'pending' } },
+      { $group: { _id: null, total: { $sum: '$total' } } },
+    ];
+
+    const result = await Order.aggregate(pipeline);
+
+    // Result will be an array with a single object { _id: null, total: <sum> }
+    const pendingOrderTotal = result.length > 0 ? result[0].total : 0;
+
+    res.json(pendingOrderTotal);
+  } catch (error) {
+    console.error('Error retrieving pending order total:', error);
+    throw error;
+  }
+});
+
 // not functional
 // const updateOrderToDelivered = asyncHandler(async (req, res) => {
 //   const order = await Order.findById(req.params.id);
@@ -91,5 +120,7 @@ module.exports = {
   getMyOrders,
   getOrdersAll,
   chnageOrderStatus,
+  getOrderCount,
+  getPendingOrdersTotal,
   //updateOrderToDelivered,
 };

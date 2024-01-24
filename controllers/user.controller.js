@@ -77,6 +77,16 @@ const updateUserRole = asyncHandler(async (req, res) => {
   }
 });
 
+const getUserCount = asyncHandler(async (req, res) => {
+  try {
+    const count = await User.countDocuments();
+    res.json(count);
+  } catch (error) {
+    console.error('Error retrieving user count:', error);
+    throw error;
+  }
+});
+
 module.exports = {
   updateUser,
   deleteUser,
@@ -84,4 +94,5 @@ module.exports = {
   getAllUsers,
   getUserById,
   updateUserRole,
+  getUserCount,
 };
