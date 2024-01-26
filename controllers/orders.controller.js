@@ -70,11 +70,15 @@ const chnageOrderStatus = asyncHandler(async (req, res) => {
 
 const getOrderCount = asyncHandler(async (req, res) => {
   try {
-    const orderCount = await Order.countDocuments();
+    // console.log('Before countDocuments');
+    const orderCount = await Order.countDocuments({});
+    //console.log('After countDocuments');
+
+    // console.log(orderCount);
     res.json(orderCount);
   } catch (error) {
     console.error('Error retrieving order count:', error);
-    throw error;
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
