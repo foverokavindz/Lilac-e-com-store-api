@@ -29,10 +29,13 @@ const updateUser = asyncHandler(async (req, res) => {
 
 // delete user - tested - working
 const deleteUser = asyncHandler(async (req, res) => {
-  const deletedUser = await User.findByIdAndDelete(req.params.id);
+  const deletedUser = await User.findByIdAndDelete(req.user._id);
+  console.log('deletedUser  ', deletedUser);
   if (!deletedUser) {
+    console.log('NotFounded');
     return res.status(404).json({ message: 'User not found' });
   }
+  console.log('Deleted');
   return res.status(204).json({ message: 'User deleted successfully' });
 });
 
